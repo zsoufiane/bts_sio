@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil - BTS SIO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu {
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #A50044;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-header {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #A50044;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border: 1px solid #A50044;
+            border-top: none;
+            text-align: center;
+            border-radius: 0 0 5px 5px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 8px;
+            color: #333;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #A50044;
+            color: white;
+        }
+
+        .menu.open .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <!-- Menu "Missions" -->
+        <div class="menu" id="missions">
+            <div class="menu-header">Missions</div>
+            <div class="dropdown-content">
+                <a href="Mission1/mission1.html">Mission 1</a>
+                <a href="Mission2/index.html">Mission 2</a>
+                <a href="Mission3/certifications.html">Certifications</a>
+                <a href="Mission4/accueil.html">Mission 4</a>
+                <a href="Mission5/moncv.html">Mission 5</a>
+            </div>
+        </div>
+
+        <!-- Menu "Travaux Pratiques" -->
+        <div class="menu" id="tp">
+            <div class="menu-header">Travaux Pratiques</div>
+            <div class="dropdown-content">
+                <a href="TP1/presentation.html">TP 1</a>
+                <a href="TP2/index.html">TP 2</a>
+                <a href="TP3/programme.html">TP 3</a>
+                <a href="TP4/centre.html">TP 4</a>
+                <a href="TP5/calculatrice.html">TP 5</a>
+                <a href="TP6/identification.html">TP 6</a>
+                <a href="TP7/facture.html">TP 7</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour activer/désactiver l'affichage d'un menu
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            menu.classList.toggle('open');
+        }
+
+        // Événements pour ouvrir/fermer indépendamment chaque menu
+        document.getElementById('missions').addEventListener('click', function (event) {
+            event.stopPropagation(); // Empêche le clic de se propager
+            closeAllMenus();
+            toggleMenu('missions');
+        });
+
+        document.getElementById('tp').addEventListener('click', function (event) {
+            event.stopPropagation(); // Empêche le clic de se propager
+            closeAllMenus();
+            toggleMenu('tp');
+        });
+
+        // Ferme tous les menus en cliquant en dehors
+        document.addEventListener('click', function () {
+            closeAllMenus();
+        });
+
+        // Fonction pour fermer tous les menus
+        function closeAllMenus() {
+            document.getElementById('missions').classList.remove('open');
+            document.getElementById('tp').classList.remove('open');
+        }
+    </script>
+
+</body>
+
+</html>
