@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Base de Données</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+            padding: 2em;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 1.5em;
+        }
+        .buttons {
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+        }
+        .btn {
+            padding: 0.8em 2em;
+            font-size: 1em;
+            color: white;
+            background: red;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TP BASE DE DONNÉES</h1>
+        <div class="buttons">
+            <a href="gestioncommandes.sql" download class="btn">Télécharger</a>
+            <a href="maphoto.pdf" target="_blank" class="btn">Ouvrir</a>
+        </div>
+    </div>
+</body>
+</html>
