@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz d'Auto-formation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007aff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 2rem;
+        }
+
+        .question h2 {
+            color: #007aff;
+        }
+
+        .question p {
+            margin-bottom: 1rem;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+
+        .buttons button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .buttons #correction-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .buttons #corrige-btn {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .buttons #effacer-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .buttons #retour-btn {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        #score {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: #007aff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Quiz d'Auto-formation</h1>
+    </header>
+    <main>
+        <form id="quiz-form">
+            <div class="question">
+                <h2>Question 1</h2>
+                <p>Quel est le type de disque système qui réalise une copie exacte de toutes les données d'une partition
+                    disque dans une autre partition?</p>
+                <label><input type="checkbox" name="q1" value="8420"> 8420</label><br>
+                <label><input type="checkbox" name="q1" value="Novogonale disque"> Novogonale disque</label><br>
+                <label><input type="checkbox" name="q1" value="Mise en miroir"> Mise en miroir</label><br>
+                <label><input type="checkbox" name="q1" value="Dépenseur à chaud"> Dépenseur à chaud</label><br>
+            </div>
+            <div class="question">
+                <h2>Question 2</h2>
+                <p>Quel est le type de disque système qui utilise de 3 x 32 disques physiques et est aussi connu sous le
+                    nom de 8A320 ?</p>
+                <label><input type="checkbox" name="q2" value="Aprégies par bandes avec parité"> Aprégies par bandes
+                    avec parité</label><br>
+                <label><input type="checkbox" name="q2" value="Aprégies par bandes sans parité"> Aprégies par bandes
+                    sans parité</label><br>
+                <label><input type="checkbox" name="q2" value="Disques en miroir"> Disques en miroir</label><br>
+                <label><input type="checkbox" name="q2" value="Aprégies par bandes avec données répétitives"> Aprégies
+                    par bandes avec données répétitives</label><br>
+            </div>
+            <!-- Ajoutez les autres questions ici -->
+        </form>
+        <div class="buttons">
+            <button type="button" id="correction-btn">Correction</button>
+            <button type="button" id="corrige-btn">Corrigé</button>
+            <button type="button" id="effacer-btn">Effacer</button>
+            <button type="button" id="retour-btn" onclick="window.location.href='index.html'">Retour</button>
+        </div>
+        <div id="score"></div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const quizForm = document.getElementById('quiz-form');
+            const correctionBtn = document.getElementById('correction-btn');
+            const corrigeBtn = document.getElementById('corrige-btn');
+            const effacerBtn = document.getElementById('effacer-btn');
+            const scoreDiv = document.getElementById('score');
+
+            const answers = {
+                q1: ["Mise en miroir"],
+                q2: ["Aprégies par bandes avec parité", "Aprégies par bandes avec données répétitives"]
+                // Ajoutez les autres réponses ici
+            };
+
+            correctionBtn.addEventListener('click', () => {
+                let score = 0;
+                const userAnswers = {};
+
+                for (const question in answers) {
+                    userAnswers[question] = Array.from(quizForm.querySelectorAll(`input[name="${question}"]:checked`))
+                        .map(checkbox => checkbox.value);
+
+                    const isCorrect = arraysEqual(userAnswers[question].sort(), answers[question].sort());
+                    if (isCorrect) {
+                        score++;
+                    }
+                }
+
+                scoreDiv.textContent = `Score: ${score} / ${Object.keys(answers).length}`;
+            });
+
+            corrigeBtn.addEventListener('click', () => {
+                const corrigeWindow = window.open("", "Corrigé", "width=600,height=400");
+                corrigeWindow.document.write(`
+                    <html>
+                    <head>
+                        <title>Corrigé du Quiz</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; }
+                            .correct { color: red; }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>Corrigé du Quiz</h1>
+                `);
+
+                for (const question in answers) {
+                    corrigeWindow.document.write(`<h2>Question ${question.slice(1)}</h2>`);
+                    corrigeWindow.document.write(`<p>${quizForm.querySelector(`div.question:nth-child(${parseInt(question.slice(1))}) p`).textContent}</p>`);
+                    answers[question].forEach(answer => {
+                        corrigeWindow.document.write(`<p class="correct">${answer}</p>`);
+                    });
+                }
+
+                corrigeWindow.document.write(`
+                        <button onclick="window.close()">Fermer</button>
+                    </body>
+                    </html>
+                `);
+            });
+
+            effacerBtn.addEventListener('click', () => {
+                quizForm.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                scoreDiv.textContent = "";
+            });
+
+            function arraysEqual(a, b) {
+                if (a === b) return true;
+                if (a == null || b == null) return false;
+                if (a.length !== b.length) return false;
+
+                for (let i = 0; i < a.length; ++i) {
+                    if (a[i] !== b[i]) return false;
+                }
+                return true;
+            }
+        });
+    </script>
+</body>
+
+</html>
