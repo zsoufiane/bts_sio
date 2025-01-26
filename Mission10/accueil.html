@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module de Facturation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #007aff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .invoice-header,
+        .invoice-body,
+        .invoice-footer {
+            margin-bottom: 20px;
+        }
+
+        .invoice-header h2 {
+            color: #007aff;
+        }
+
+        .invoice-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .invoice-body th,
+        .invoice-body td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .invoice-body th {
+            background-color: #007aff;
+            color: white;
+        }
+
+        .invoice-footer button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .calculate-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .add-line-btn {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .auto-fill-btn {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .cancel-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .return-btn {
+            background-color: #6c757d;
+            color: white;
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .return-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Module de Facturation</h1>
+    </header>
+    <main>
+        <div class="invoice-header">
+            <h2>Facture</h2>
+            <p>Date: <input type="date" id="invoice-date"></p>
+            <p>Numéro de facture: <input type="text" id="invoice-number"></p>
+        </div>
+        <div class="invoice-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Quantité</th>
+                        <th>Prix Unitaire</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-items">
+                    <tr id="modeleLigne" style="display: none;">
+                        <td><input type="text" name="desc" class="desc"></td>
+                        <td><input type="number" name="qte" class="qte"></td>
+                        <td><input type="number" name="prix" class="prix"></td>
+                        <td><input type="number" name="total" class="totalLigne" readonly></td>
+                    </tr>
+                    <tr id="lastLigne">
+                        <td colspan="4"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="invoice-footer">
+            <p>Remise: <input type="number" id="remise" value="0"></p>
+            <p>Taux d'imposition: <input type="number" id="tax-rate" value="10"></p>
+            <p>Frais d'expédition: <input type="number" id="shipping" value="5"></p>
+            <p>Sous-Total: <span id="subtotal">0.00</span></p>
+            <p>Sous-Total moins remise: <span id="subtotal-after-discount">0.00</span></p>
+            <p>Taxe Totale: <span id="total-tax">0.00</span></p>
+            <p>Solde: <span id="balance">0.00</span></p>
+            <button class="calculate-btn" onclick="calculate()">Calculer</button>
+            <button class="add-line-btn" onclick="ajouterLigne()">Ajouter une ligne</button>
+            <button class="auto-fill-btn" onclick="remplir()">Remplir automatiquement</button>
+            <button class="cancel-btn" onclick="annuler()">Annuler</button>
+            <button class="return-btn" onclick="window.location.href='../index.html'">Retour à la page d'accueil</button>
+        </div>
+    </main>
+    <script>
+        // Fonction pour ajouter une ligne
+        function ajouterLigne() {
+            var modeleLigne = document.getElementById("modeleLigne");
+            var clone = modeleLigne.cloneNode(true);
+            clone.style.display = "";
+            var lastLigne = document.getElementById("lastLigne");
+            lastLigne.parentNode.insertBefore(clone, lastLigne);
+        }
+
+        // Fonction pour remplir automatiquement
+        function remplir() {
+            const tabDesc = ["portable", "bureau", "ram 8go", "clé usb 16go", "souris", "écran 17 pouces"];
+            var listeDesc = document.getElementsByClassName("desc");
+            var listeQte = document.getElementsByClassName("qte");
+            var listePrix = document.getElementsByClassName("prix");
+
+            for (let i = 0; i < listeDesc.length; i++) {
+                listeDesc[i].value = tabDesc[Math.floor(Math.random() * tabDesc.length)];
+                listeQte[i].value = Math.floor(Math.random() * 10) + 1;
+                listePrix[i].value = Math.floor(Math.random() * 100) + 1;
+            }
+        }
+
+        // Fonction pour calculer les totaux
+        function calculate() {
+            var listeQte = document.getElementsByClassName("qte");
+            var listePrix = document.getElementsByClassName("prix");
+            var listeTotalLigne = document.getElementsByClassName("totalLigne");
+            var subtotal = 0;
+
+            for (let i = 0; i < listeQte.length; i++) {
+                var totalLigne = parseFloat(listeQte[i].value) * parseFloat(listePrix[i].value);
+                listeTotalLigne[i].value = totalLigne.toFixed(2);
+                subtotal += totalLigne;
+            }
+
+            document.getElementById("subtotal").innerText = subtotal.toFixed(2);
+            var remise = parseFloat(document.getElementById("remise").value);
+            var subtotalAfterDiscount = subtotal - (subtotal * remise / 100);
+            document.getElementById("subtotal-after-discount").innerText = subtotalAfterDiscount.toFixed(2);
+            var taxRate = parseFloat(document.getElementById("tax-rate").value);
+            var totalTax = subtotalAfterDiscount * (taxRate / 100);
+            document.getElementById("total-tax").innerText = totalTax.toFixed(2);
+            var shipping = parseFloat(document.getElementById("shipping").value);
+            var balance = subtotalAfterDiscount + totalTax + shipping;
+            document.getElementById("balance").innerText = balance.toFixed(2);
+        }
+
+        // Fonction pour annuler
+        function annuler() {
+            var listeDesc = document.getElementsByClassName("desc");
+            var listeQte = document.getElementsByClassName("qte");
+            var listePrix = document.getElementsByClassName("prix");
+            var listeTotalLigne = document.getElementsByClassName("totalLigne");
+
+            for (let i = 0; i < listeDesc.length; i++) {
+                listeDesc[i].value = "";
+                listeQte[i].value = "";
+                listePrix[i].value = "";
+                listeTotalLigne[i].value = "";
+            }
+
+            document.getElementById("subtotal").innerText = "0.00";
+            document.getElementById("subtotal-after-discount").innerText = "0.00";
+            document.getElementById("total-tax").innerText = "0.00";
+            document.getElementById("balance").innerText = "0.00";
+        }
+    </script>
+</body>
+
+</html>
