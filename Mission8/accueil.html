@@ -226,19 +226,59 @@
         </div>
     </main>
 
+    <!-- Modal -->
+    <div class="modal" id="modal" style="display: none;">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <pre id="modal-content"></pre>
+            <button class="close-btn" id="close-btn">Fermer</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const exerciseData = [
                 { title: "1. Somme", solution: `function somme(a, b) { return a + b; }`, demo: "somme(5, 3) = 8" },
                 { title: "2. Afficher 1..10", solution: `function afficher() { for (let i = 1; i <= 10; i++) { console.log(i); } }`, demo: "Résultat dans la console." },
                 { title: "3. Plus grand nombre", solution: `function max(a, b) { return a > b ? a : b; }`, demo: "max(7, 3) = 7" },
-                // Remplis avec tes solutions/démos pour le reste des exercices
+                { title: "4. Factorielle", solution: `function factorielle(n) { if (n === 0) return 1; return n * factorielle(n - 1); }`, demo: "factorielle(5) = 120" },
+                { title: "5. Palindrome", solution: `function estPalindrome(str) { return str === str.split('').reverse().join(''); }`, demo: "estPalindrome('radar') = true" },
+                { title: "6. Compter les voyelles", solution: `function compterVoyelles(str) { return str.match(/[aeiou]/gi).length; }`, demo: "compterVoyelles('bonjour') = 3" },
+                { title: "7. Tri d'un tableau", solution: `function trierTableau(arr) { return arr.sort((a, b) => a - b); }`, demo: "trierTableau([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]) = [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]" },
+                { title: "8. FizzBuzz", solution: `function fizzBuzz() { for (let i = 1; i <= 100; i++) { if (i % 15 === 0) console.log('FizzBuzz'); else if (i % 3 === 0) console.log('Fizz'); else if (i % 5 === 0) console.log('Buzz'); else console.log(i); } }`, demo: "Résultat dans la console." },
+                { title: "9. Fibonacci", solution: `function fibonacci(n) { let fib = [0, 1]; for (let i = 2; i < n; i++) { fib[i] = fib[i - 1] + fib[i - 2]; } return fib; }`, demo: "fibonacci(10) = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]" },
+                { title: "10. Éléments uniques", solution: `function elementsUniques(arr) { return [...new Set(arr)]; }`, demo: "elementsUniques([1, 2, 2, 3, 4, 4, 5]) = [1, 2, 3, 4, 5]" }
             ];
 
-            function showModal(title, content) { /* ... */ }
+            function showModal(title, content) {
+                const modal = document.getElementById('modal');
+                const modalTitle = document.getElementById('modal-title');
+                const modalContent = document.getElementById('modal-content');
+                modalTitle.textContent = title;
+                modalContent.textContent = content;
+                modal.style.display = 'flex';
+            }
+
+            function closeModal() {
+                const modal = document.getElementById('modal');
+                modal.style.display = 'none';
+            }
 
             const exercises = document.querySelectorAll(".exercise");
-            exercises.forEach((exercise, index) => { /* ... */ });
+            exercises.forEach((exercise, index) => {
+                const solutionBtn = exercise.querySelector('.solution-btn');
+                const demoBtn = exercise.querySelector('.demo-btn');
+
+                solutionBtn.addEventListener('click', () => {
+                    showModal(exerciseData[index].title, exerciseData[index].solution);
+                });
+
+                demoBtn.addEventListener('click', () => {
+                    showModal(exerciseData[index].title, exerciseData[index].demo);
+                });
+            });
+
+            document.getElementById('close-btn').addEventListener('click', closeModal);
         });
     </script>
 </body>
