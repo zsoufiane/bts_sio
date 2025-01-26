@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banque d'Exercices JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #0066cc;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .exercise {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .exercise h2 {
+            margin: 0 0 10px;
+        }
+
+        .exercise p {
+            margin: 0 0 10px;
+            color: #555;
+        }
+
+        .exercise button {
+            margin-right: 10px;
+            padding: 8px 15px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .exercise button:hover {
+            background-color: #004c99;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+        }
+
+        .modal-content pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .close-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Banque d'Exercices JavaScript</h1>
+        <p>Les concepts algorithmiques sont indépendants des langages de programmation.</p>
+    </header>
+    <main>
+        <div class="exercise">
+            <h2>1. Somme</h2>
+            <p>Écrire une fonction qui prend deux nombres en entrée et retourne leur somme.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>2. Afficher 1..10</h2>
+            <p>Écrire une fonction qui affiche les nombres de 1 à 10.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>3. Trouver le plus grand entre deux nombres</h2>
+            <p>Écrire une fonction qui retourne le plus grand entre deux nombres.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+    </main>
+
+    <!-- Script JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const exerciseData = [
+                {
+                    title: "1. Somme",
+                    solution: `function somme(a, b) {
+    return a + b;
+}`,
+                    demo: "Exemple : somme(5, 3) = 8"
+                },
+                {
+                    title: "2. Afficher 1..10",
+                    solution: `function afficher() {
+    for (let i = 1; i <= 10; i++) {
+        console.log(i);
+    }
+}`,
+                    demo: "Exemple : Les nombres de 1 à 10 s'affichent dans la console."
+                },
+                {
+                    title: "3. Trouver le plus grand entre deux nombres",
+                    solution: `function max(a, b) {
+    return a > b ? a : b;
+}`,
+                    demo: "Exemple : max(7, 3) = 7"
+                }
+            ];
+
+            function showModal(title, content) {
+                const modal = document.createElement("div");
+                modal.classList.add("modal");
+
+                modal.innerHTML = `
+          <div class="modal-content">
+            <h3>${title}</h3>
+            <pre>${content}</pre>
+            <button class="close-btn">Fermer</button>
+          </div>
+        `;
+
+                document.body.appendChild(modal);
+
+                modal.querySelector(".close-btn").addEventListener("click", () => {
+                    document.body.removeChild(modal);
+                });
+            }
+
+            const exercises = document.querySelectorAll(".exercise");
+            exercises.forEach((exercise, index) => {
+                const solutionBtn = exercise.querySelector(".solution-btn");
+                const demoBtn = exercise.querySelector(".demo-btn");
+
+                solutionBtn.addEventListener("click", () => {
+                    showModal("Solution - " + exerciseData[index].title, exerciseData[index].solution);
+                });
+
+                demoBtn.addEventListener("click", () => {
+                    showModal("Démonstration - " + exerciseData[index].title, exerciseData[index].demo);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
