@@ -4,225 +4,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Culture Générale</title>
+    <title>Banque d'Exercices JavaScript</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        /* Global Styles */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #1c1c1e;
+            color: #f5f5f7;
+            padding: 20px;
+        }
+
+        /* Header Styles */
         header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: #d1d1d6;
+        }
+
+        /* Main Section */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .exercise {
+            background-color: #292929;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .exercise:hover {
+            transform: scale(1.02);
+        }
+
+        .exercise h2 {
+            font-size: 1.5rem;
+            color: #00d8ff;
+            margin-bottom: 10px;
+        }
+
+        .exercise p {
+            color: #d1d1d6;
+            margin-bottom: 15px;
+        }
+
+        .exercise button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .solution-btn {
             background-color: #007aff;
-            color: white;
-            padding: 1rem;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .solution-btn:hover {
+            background-color: #005bb5;
+        }
+
+        .demo-btn {
+            background-color: #5856d6;
+            color: #fff;
+        }
+
+        .demo-btn:hover {
+            background-color: #3a3a9e;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #1c1c1e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
             text-align: center;
         }
 
-        main {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .modal-content h3 {
+            color: #00d8ff;
+            margin-bottom: 15px;
         }
 
-        .question {
-            margin-bottom: 2rem;
+        .modal-content pre {
+            background: #292929;
+            color: #f5f5f7;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-align: left;
         }
 
-        .question h2 {
-            color: #007aff;
-        }
-
-        .question p {
-            margin-bottom: 1rem;
-        }
-
-        .question label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 2rem;
-        }
-
-        .buttons button {
-            padding: 0.5rem 1rem;
+        .close-btn {
+            background-color: #34c759;
+            color: white;
             border: none;
-            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
             cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
         }
 
-        .buttons #correction-btn {
+        .close-btn:hover {
             background-color: #28a745;
-            color: white;
-        }
-
-        .buttons #corrige-btn {
-            background-color: #ffc107;
-            color: white;
-        }
-
-        .buttons #effacer-btn {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .buttons #retour-btn {
-            background-color: #17a2b8;
-            color: white;
-        }
-
-        #score {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            color: #007aff;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Quiz de Culture Générale</h1>
+        <h1>Banque d'Exercices JavaScript</h1>
+        <p>Améliorez vos compétences en résolvant des exercices pratiques !</p>
     </header>
     <main>
-        <form id="quiz-form">
-            <div class="question">
-                <h2>Question 1</h2>
-                <p>Quelle est la capitale de la France ?</p>
-                <label><input type="checkbox" name="q1" value="Paris"> Paris</label><br>
-                <label><input type="checkbox" name="q1" value="Londres"> Londres</label><br>
-                <label><input type="checkbox" name="q1" value="Berlin"> Berlin</label><br>
-                <label><input type="checkbox" name="q1" value="Madrid"> Madrid</label><br>
-            </div>
-            <div class="question">
-                <h2>Question 2</h2>
-                <p>Qui a peint la Joconde ?</p>
-                <label><input type="checkbox" name="q2" value="Léonard de Vinci"> Léonard de Vinci</label><br>
-                <label><input type="checkbox" name="q2" value="Pablo Picasso"> Pablo Picasso</label><br>
-                <label><input type="checkbox" name="q2" value="Vincent van Gogh"> Vincent van Gogh</label><br>
-                <label><input type="checkbox" name="q2" value="Michel-Ange"> Michel-Ange</label><br>
-            </div>
-            <div class="question">
-                <h2>Question 3</h2>
-                <p>Quel est le plus grand océan du monde ?</p>
-                <label><input type="checkbox" name="q3" value="Océan Pacifique"> Océan Pacifique</label><br>
-                <label><input type="checkbox" name="q3" value="Océan Atlantique"> Océan Atlantique</label><br>
-                <label><input type="checkbox" name="q3" value="Océan Indien"> Océan Indien</label><br>
-                <label><input type="checkbox" name="q3" value="Océan Arctique"> Océan Arctique</label><br>
-            </div>
-            <div class="question">
-                <h2>Question 4</h2>
-                <p>Quel est le plus grand pays du monde par superficie ?</p>
-                <label><input type="checkbox" name="q4" value="Russie"> Russie</label><br>
-                <label><input type="checkbox" name="q4" value="Canada"> Canada</label><br>
-                <label><input type="checkbox" name="q4" value="Chine"> Chine</label><br>
-                <label><input type="checkbox" name="q4" value="États-Unis"> États-Unis</label><br>
-            </div>
-            <div class="question">
-                <h2>Question 5</h2>
-                <p>Qui a écrit "Le Petit Prince" ?</p>
-                <label><input type="checkbox" name="q5" value="Antoine de Saint-Exupéry"> Antoine de
-                    Saint-Exupéry</label><br>
-                <label><input type="checkbox" name="q5" value="Jules Verne"> Jules Verne</label><br>
-                <label><input type="checkbox" name="q5" value="Victor Hugo"> Victor Hugo</label><br>
-                <label><input type="checkbox" name="q5" value="Gustave Flaubert"> Gustave Flaubert</label><br>
-            </div>
-        </form>
-        <div class="buttons">
-            <button type="button" id="correction-btn">Correction</button>
-            <button type="button" id="corrige-btn">Corrigé</button>
-            <button type="button" id="effacer-btn">Effacer</button>
-            <button type="button" id="retour-btn" onclick="window.location.href='index.html'">Retour</button>
+        <!-- Dynamic Exercises -->
+        <div class="exercise">
+            <h2>1. Somme</h2>
+            <p>Écrire une fonction qui prend deux nombres en entrée et retourne leur somme.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
         </div>
-        <div id="score"></div>
+        <div class="exercise">
+            <h2>2. Afficher 1..10</h2>
+            <p>Écrire une fonction qui affiche les nombres de 1 à 10 dans la console.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>3. Plus grand nombre</h2>
+            <p>Écrire une fonction qui retourne le plus grand entre deux nombres donnés.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>4. Factorielle</h2>
+            <p>Écrire une fonction qui calcule la factorielle d'un nombre donné.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>5. Palindrome</h2>
+            <p>Écrire une fonction qui vérifie si une chaîne de caractères est un palindrome.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>6. Compter les voyelles</h2>
+            <p>Écrire une fonction qui compte le nombre de voyelles dans une chaîne.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>7. Tri d'un tableau</h2>
+            <p>Écrire une fonction qui trie un tableau d'entiers dans l'ordre croissant.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>8. FizzBuzz</h2>
+            <p>Écrire une fonction qui affiche les nombres de 1 à 100 avec les règles de FizzBuzz.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>9. Fibonacci</h2>
+            <p>Écrire une fonction qui génère les n premiers termes de la suite de Fibonacci.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
+        <div class="exercise">
+            <h2>10. Éléments uniques</h2>
+            <p>Écrire une fonction qui retourne les éléments uniques d'un tableau.</p>
+            <button class="solution-btn">Voir la solution</button>
+            <button class="demo-btn">Voir la démonstration</button>
+        </div>
     </main>
+
+    <!-- Modal -->
+    <div class="modal" id="modal" style="display: none;">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <pre id="modal-content"></pre>
+            <button class="close-btn" id="close-btn">Fermer</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const quizForm = document.getElementById('quiz-form');
-            const correctionBtn = document.getElementById('correction-btn');
-            const corrigeBtn = document.getElementById('corrige-btn');
-            const effacerBtn = document.getElementById('effacer-btn');
-            const scoreDiv = document.getElementById('score');
+            const exerciseData = [
+                { title: "1. Somme", solution: `function somme(a, b) { return a + b; }`, demo: "somme(5, 3) = 8" },
+                { title: "2. Afficher 1..10", solution: `function afficher() { for (let i = 1; i <= 10; i++) { console.log(i); } }`, demo: "Résultat dans la console." },
+                { title: "3. Plus grand nombre", solution: `function max(a, b) { return a > b ? a : b; }`, demo: "max(7, 3) = 7" },
+                { title: "4. Factorielle", solution: `function factorielle(n) { if (n === 0) return 1; return n * factorielle(n - 1); }`, demo: "factorielle(5) = 120" },
+                { title: "5. Palindrome", solution: `function estPalindrome(str) { return str === str.split('').reverse().join(''); }`, demo: "estPalindrome('radar') = true" },
+                { title: "6. Compter les voyelles", solution: `function compterVoyelles(str) { return str.match(/[aeiou]/gi).length; }`, demo: "compterVoyelles('bonjour') = 3" },
+                { title: "7. Tri d'un tableau", solution: `function trierTableau(arr) { return arr.sort((a, b) => a - b); }`, demo: "trierTableau([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]) = [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]" },
+                { title: "8. FizzBuzz", solution: `function fizzBuzz() { for (let i = 1; i <= 100; i++) { if (i % 15 === 0) console.log('FizzBuzz'); else if (i % 3 === 0) console.log('Fizz'); else if (i % 5 === 0) console.log('Buzz'); else console.log(i); } }`, demo: "Résultat dans la console." },
+                { title: "9. Fibonacci", solution: `function fibonacci(n) { let fib = [0, 1]; for (let i = 2; i < n; i++) { fib[i] = fib[i - 1] + fib[i - 2]; } return fib; }`, demo: "fibonacci(10) = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]" },
+                { title: "10. Éléments uniques", solution: `function elementsUniques(arr) { return [...new Set(arr)]; }`, demo: "elementsUniques([1, 2, 2, 3, 4, 4, 5]) = [1, 2, 3, 4, 5]" }
+            ];
 
-            const answers = {
-                q1: ["Paris"],
-                q2: ["Léonard de Vinci"],
-                q3: ["Océan Pacifique"],
-                q4: ["Russie"],
-                q5: ["Antoine de Saint-Exupéry"]
-            };
-
-            correctionBtn.addEventListener('click', () => {
-                let score = 0;
-                const userAnswers = {};
-
-                for (const question in answers) {
-                    userAnswers[question] = Array.from(quizForm.querySelectorAll(`input[name="${question}"]:checked`))
-                        .map(checkbox => checkbox.value);
-
-                    const isCorrect = arraysEqual(userAnswers[question].sort(), answers[question].sort());
-                    if (isCorrect) {
-                        score++;
-                    }
-                }
-
-                scoreDiv.textContent = `Score: ${score} / ${Object.keys(answers).length}`;
-            });
-
-            corrigeBtn.addEventListener('click', () => {
-                const corrigeWindow = window.open("", "Corrigé", "width=600,height=400");
-                corrigeWindow.document.write(`
-                    <html>
-                    <head>
-                        <title>Corrigé du Quiz</title>
-                        <style>
-                            body { font-family: Arial, sans-serif; }
-                            .correct { color: red; }
-                        </style>
-                    </head>
-                    <body>
-                        <h1>Corrigé du Quiz</h1>
-                `);
-
-                for (const question in answers) {
-                    corrigeWindow.document.write(`<h2>Question ${question.slice(1)}</h2>`);
-                    corrigeWindow.document.write(`<p>${quizForm.querySelector(`div.question:nth-child(${parseInt(question.slice(1))}) p`).textContent}</p>`);
-                    answers[question].forEach(answer => {
-                        corrigeWindow.document.write(`<p class="correct">${answer}</p>`);
-                    });
-                }
-
-                corrigeWindow.document.write(`
-                        <button onclick="window.close()">Fermer</button>
-                    </body>
-                    </html>
-                `);
-            });
-
-            effacerBtn.addEventListener('click', () => {
-                quizForm.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                    checkbox.checked = false;
-                });
-                scoreDiv.textContent = "";
-            });
-
-            function arraysEqual(a, b) {
-                if (a === b) return true;
-                if (a == null || b == null) return false;
-                if (a.length !== b.length) return false;
-
-                for (let i = 0; i < a.length; ++i) {
-                    if (a[i] !== b[i]) return false;
-                }
-                return true;
+            function showModal(title, content) {
+                const modal = document.getElementById('modal');
+                const modalTitle = document.getElementById('modal-title');
+                const modalContent = document.getElementById('modal-content');
+                modalTitle.textContent = title;
+                modalContent.textContent = content;
+                modal.style.display = 'flex';
             }
+
+            function closeModal() {
+                const modal = document.getElementById('modal');
+                modal.style.display = 'none';
+            }
+
+            const exercises = document.querySelectorAll(".exercise");
+            exercises.forEach((exercise, index) => {
+                const solutionBtn = exercise.querySelector('.solution-btn');
+                const demoBtn = exercise.querySelector('.demo-btn');
+
+                solutionBtn.addEventListener('click', () => {
+                    showModal(exerciseData[index].title, exerciseData[index].solution);
+                });
+
+                demoBtn.addEventListener('click', () => {
+                    showModal(exerciseData[index].title, exerciseData[index].demo);
+                });
+            });
+
+            document.getElementById('close-btn').addEventListener('click', closeModal);
         });
     </script>
 </body>

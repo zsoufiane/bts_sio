@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz d'Auto-formation</title>
+    <title>Quiz de Culture Générale</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -89,32 +89,51 @@
 
 <body>
     <header>
-        <h1>Quiz d'Auto-formation</h1>
+        <h1>Quiz de Culture Générale</h1>
     </header>
     <main>
         <form id="quiz-form">
             <div class="question">
                 <h2>Question 1</h2>
-                <p>Quel est le type de disque système qui réalise une copie exacte de toutes les données d'une partition
-                    disque dans une autre partition?</p>
-                <label><input type="checkbox" name="q1" value="8420"> 8420</label><br>
-                <label><input type="checkbox" name="q1" value="Novogonale disque"> Novogonale disque</label><br>
-                <label><input type="checkbox" name="q1" value="Mise en miroir"> Mise en miroir</label><br>
-                <label><input type="checkbox" name="q1" value="Dépenseur à chaud"> Dépenseur à chaud</label><br>
+                <p>Quelle est la capitale de la France ?</p>
+                <label><input type="checkbox" name="q1" value="Paris"> Paris</label><br>
+                <label><input type="checkbox" name="q1" value="Londres"> Londres</label><br>
+                <label><input type="checkbox" name="q1" value="Berlin"> Berlin</label><br>
+                <label><input type="checkbox" name="q1" value="Madrid"> Madrid</label><br>
             </div>
             <div class="question">
                 <h2>Question 2</h2>
-                <p>Quel est le type de disque système qui utilise de 3 x 32 disques physiques et est aussi connu sous le
-                    nom de 8A320 ?</p>
-                <label><input type="checkbox" name="q2" value="Aprégies par bandes avec parité"> Aprégies par bandes
-                    avec parité</label><br>
-                <label><input type="checkbox" name="q2" value="Aprégies par bandes sans parité"> Aprégies par bandes
-                    sans parité</label><br>
-                <label><input type="checkbox" name="q2" value="Disques en miroir"> Disques en miroir</label><br>
-                <label><input type="checkbox" name="q2" value="Aprégies par bandes avec données répétitives"> Aprégies
-                    par bandes avec données répétitives</label><br>
+                <p>Qui a peint la Joconde ?</p>
+                <label><input type="checkbox" name="q2" value="Léonard de Vinci"> Léonard de Vinci</label><br>
+                <label><input type="checkbox" name="q2" value="Pablo Picasso"> Pablo Picasso</label><br>
+                <label><input type="checkbox" name="q2" value="Vincent van Gogh"> Vincent van Gogh</label><br>
+                <label><input type="checkbox" name="q2" value="Michel-Ange"> Michel-Ange</label><br>
             </div>
-            <!-- Ajoutez les autres questions ici -->
+            <div class="question">
+                <h2>Question 3</h2>
+                <p>Quel est le plus grand océan du monde ?</p>
+                <label><input type="checkbox" name="q3" value="Océan Pacifique"> Océan Pacifique</label><br>
+                <label><input type="checkbox" name="q3" value="Océan Atlantique"> Océan Atlantique</label><br>
+                <label><input type="checkbox" name="q3" value="Océan Indien"> Océan Indien</label><br>
+                <label><input type="checkbox" name="q3" value="Océan Arctique"> Océan Arctique</label><br>
+            </div>
+            <div class="question">
+                <h2>Question 4</h2>
+                <p>Quel est le plus grand pays du monde par superficie ?</p>
+                <label><input type="checkbox" name="q4" value="Russie"> Russie</label><br>
+                <label><input type="checkbox" name="q4" value="Canada"> Canada</label><br>
+                <label><input type="checkbox" name="q4" value="Chine"> Chine</label><br>
+                <label><input type="checkbox" name="q4" value="États-Unis"> États-Unis</label><br>
+            </div>
+            <div class="question">
+                <h2>Question 5</h2>
+                <p>Qui a écrit "Le Petit Prince" ?</p>
+                <label><input type="checkbox" name="q5" value="Antoine de Saint-Exupéry"> Antoine de
+                    Saint-Exupéry</label><br>
+                <label><input type="checkbox" name="q5" value="Jules Verne"> Jules Verne</label><br>
+                <label><input type="checkbox" name="q5" value="Victor Hugo"> Victor Hugo</label><br>
+                <label><input type="checkbox" name="q5" value="Gustave Flaubert"> Gustave Flaubert</label><br>
+            </div>
         </form>
         <div class="buttons">
             <button type="button" id="correction-btn">Correction</button>
@@ -133,9 +152,11 @@
             const scoreDiv = document.getElementById('score');
 
             const answers = {
-                q1: ["Mise en miroir"],
-                q2: ["Aprégies par bandes avec parité", "Aprégies par bandes avec données répétitives"]
-                // Ajoutez les autres réponses ici
+                q1: ["Paris"],
+                q2: ["Léonard de Vinci"],
+                q3: ["Océan Pacifique"],
+                q4: ["Russie"],
+                q5: ["Antoine de Saint-Exupéry"]
             };
 
             correctionBtn.addEventListener('click', () => {
