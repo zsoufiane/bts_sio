@@ -16,29 +16,29 @@
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            background-color: #1c1c1e;
-            color: #f5f5f7;
+            background-color: #f0f4f8;
+            color: #333;
             padding: 20px;
         }
 
         /* Header Styles */
         header {
             text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #007aff, #5856d6);
-            border-radius: 10px;
+            padding: 30px;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            border-radius: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         header h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
             color: #fff;
         }
 
         header p {
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #d1d1d6;
         }
 
@@ -46,75 +46,81 @@
         main {
             max-width: 900px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .exercise {
-            background-color: #292929;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 15px 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            position: relative;
         }
 
         .exercise:hover {
-            transform: scale(1.02);
+            transform: translateY(-5px);
         }
 
         .exercise h2 {
-            font-size: 1.5rem;
-            color: #00d8ff;
+            font-size: 1.8rem;
+            color: #4e54c8;
             margin-bottom: 10px;
         }
 
         .exercise p {
-            color: #d1d1d6;
+            color: #555;
             margin-bottom: 15px;
         }
 
         .exercise button {
             padding: 10px 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .solution-btn {
-            background-color: #007aff;
-            color: #fff;
+            transition: background-color 0.3s, transform 0.2s;
             margin-right: 10px;
         }
 
+        .solution-btn {
+            background-color: #4e54c8;
+            color: #fff;
+        }
+
         .solution-btn:hover {
-            background-color: #005bb5;
+            background-color: #434190;
+            transform: scale(1.05);
         }
 
         .demo-btn {
-            background-color: #5856d6;
+            background-color: #8f94fb;
             color: #fff;
         }
 
         .demo-btn:hover {
-            background-color: #3a3a9e;
+            background-color: #757be8;
+            transform: scale(1.05);
         }
 
         .return-btn {
-            background-color: #17a2b8;
+            background-color: #007bff;
             color: #fff;
             display: block;
             margin: 20px auto;
             padding: 10px 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         .return-btn:hover {
-            background-color: #138496;
+            background-color: #0056b3;
+            transform: scale(1.05);
         }
 
         /* Modal Styles */
@@ -132,44 +138,45 @@
         }
 
         .modal-content {
-            background-color: #1c1c1e;
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             width: 80%;
             max-width: 500px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
         .modal-content h3 {
-            color: #00d8ff;
+            color: #4e54c8;
             margin-bottom: 15px;
         }
 
         .modal-content pre {
-            background: #292929;
-            color: #f5f5f7;
+            background: #f0f4f8;
+            color: #333;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
             white-space: pre-wrap;
             word-wrap: break-word;
             text-align: left;
+            overflow: auto;
         }
 
         .close-btn {
-            background-color: #34c759;
+            background-color: #28a745;
             color: white;
             border: none;
             padding: 10px 20px;
             font-size: 1rem;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             margin-top: 15px;
             transition: background-color 0.3s ease;
         }
 
         .close-btn:hover {
-            background-color: #28a745;
+            background-color: #218838;
         }
     </style>
 </head>
