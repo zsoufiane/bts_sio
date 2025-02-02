@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +11,17 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             background: #f4f4f9;
         }
+
         .container {
             text-align: center;
             padding: 2em;
@@ -26,16 +30,19 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin: 1em;
         }
+
         h1 {
             font-size: 2em;
             color: #333;
             margin-bottom: 1.5em;
         }
+
         .buttons {
             display: flex;
             gap: 1em;
             justify-content: center;
         }
+
         .btn {
             padding: 0.8em 2em;
             font-size: 1em;
@@ -48,11 +55,22 @@
             text-decoration: none;
             display: inline-block;
         }
+
         .btn:hover {
             background: darkred;
         }
+
+        .btn-return {
+            margin-top: 2em;
+            background: #007bff;
+        }
+
+        .btn-return:hover {
+            background: #0056b3;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>TP BASE DE DONNÉES</h1>
@@ -67,6 +85,8 @@
             <a href="http://mescommandestest.free.nf" class="btn" target="_blank">Gestion de commandes</a>
             <a href="http://mabibilothequetest.free.nf" class="btn" target="_blank">Bibliothèque</a>
         </div>
-    </div>    
+    </div>
+    <a href="index.html" class="btn btn-return">Retour vers l'index</a>
 </body>
+
 </html>
