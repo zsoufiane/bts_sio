@@ -21,8 +21,8 @@
             min-height: 100vh;
         }
 
-        /* Barre de navigation */
-        .navbar {
+        .navbar,
+        .footer-menu {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -31,27 +31,36 @@
             border-bottom: 2px solid #A50044;
         }
 
-        .navbar h1 {
+        .footer-menu {
+            border-top: 2px solid #A50044;
+            border-bottom: none;
+            margin-top: auto;
+        }
+
+        .navbar h1,
+        .footer-menu h1 {
             font-size: 1.5rem;
             color: #A50044;
         }
 
-        .navbar-right {
+        .navbar-right,
+        .footer-right {
             display: flex;
             align-items: center;
         }
 
-        .navbar a {
+        .navbar a,
+        .footer-menu a {
             text-decoration: none;
             color: #333;
             margin: 0 10px;
         }
 
-        .navbar a:hover {
+        .navbar a:hover,
+        .footer-menu a:hover {
             text-decoration: underline;
         }
 
-        /* Styles pour les sous-menus */
         .dropdown {
             position: relative;
         }
@@ -87,14 +96,11 @@
 </head>
 
 <body>
-
-    <!-- Barre de navigation -->
     <div class="navbar">
         <div class="navbar-left">
             <h1>Soufiane ZOUGAGH</h1>
         </div>
         <div class="navbar-right">
-            <!-- Menu déroulant Missions -->
             <div class="dropdown">
                 <a href="#">Missions</a>
                 <div class="dropdown-content">
@@ -107,8 +113,6 @@
                     <a href="Mission10/accueil.html">Mission 10</a>
                 </div>
             </div>
-
-            <!-- Menu déroulant Travaux Pratiques -->
             <div class="dropdown">
                 <a href="#">Travaux Pratiques</a>
                 <div class="dropdown-content">
@@ -121,7 +125,6 @@
                     <a href="TP7/facture.html">TP 7</a>
                 </div>
             </div>
-            <!-- Menu déroulant pour les certif -->
             <div class="dropdown">
                 <a href="#">Certifications</a>
                 <div class="dropdown-content">
@@ -132,15 +135,27 @@
                     <a href="documents/certification5.png" target="_blank">Certification RPGD 5</a>
                     <a href="documents/certification6.png" target="_blank">Certification ANSSI</a>
                 </div>
+            </div>
+            <a href="https://soufiane69.wordpress.com/" target="_blank">Wordpress</a>
+            <a href="TP8/accueil.html">PHP & SQL</a>
+            <a href="https://www.linkedin.com/in/soufiane-z-010bb92aa" target="_blank">LinkedIn</a>
+            <a href="https://github.com/zsoufiane" target="_blank">GitHub</a>
+            <a href="mon.cv.pdf" target="_blank">Mon CV</a>
         </div>
-                    <!-- Lien GitHub ouvrant dans un nouvel onglet -->
-                    <a href="https://soufiane69.wordpress.com/" target="_blank">Wordpress</a>
-                    <a href="TP8/accueil.html" target="_blank">PHP & SQL</a>
-                    <a href="https://www.linkedin.com/in/soufiane-z-010bb92aa" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/zsoufiane" target="_blank">GitHub</a>
-                    <a href="mon.cv.pdf" target="_blank">Mon CV</a>
     </div>
 
+    <div class="footer-menu">
+        <div class="footer-right">
+            <a href="#">Missions</a>
+            <a href="#">Travaux Pratiques</a>
+            <a href="#">Certifications</a>
+            <a href="https://soufiane69.wordpress.com/" target="_blank">Wordpress</a>
+            <a href="TP8/accueil.html">PHP & SQL</a>
+            <a href="https://www.linkedin.com/in/soufiane-z-010bb92aa" target="_blank">LinkedIn</a>
+            <a href="https://github.com/zsoufiane" target="_blank">GitHub</a>
+            <a href="mon.cv.pdf" target="_blank">Mon CV</a>
+        </div>
+    </div>
 </body>
 
 </html>
