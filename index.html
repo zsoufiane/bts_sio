@@ -4,36 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Soufiane Zougagh</title>
+    <title>Mon portfolio</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
             background-color: #f4f4f9;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(90deg, #004D98, #A50044);
-            padding: 15px 30px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            border-bottom: 2px solid #A50044;
         }
 
         .navbar h1 {
-            color: #FFD700;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            color: #A50044;
         }
 
         .navbar-right {
@@ -43,14 +42,12 @@
 
         .navbar a {
             text-decoration: none;
-            color: white;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: 0.3s;
+            color: #333;
+            margin: 0 10px;
         }
 
         .navbar a:hover {
-            color: #FFD700;
+            text-decoration: underline;
         }
 
         .dropdown {
@@ -62,16 +59,18 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: white;
+            background-color: #fff;
+            border: 1px solid #A50044;
             border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
+            z-index: 1;
         }
 
         .dropdown-content a {
             display: block;
-            padding: 10px 15px;
+            padding: 8px 12px;
             color: #333;
+            text-decoration: none;
+            white-space: nowrap;
         }
 
         .dropdown-content a:hover {
@@ -82,41 +81,55 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
-        .container {
-            margin-top: 100px;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .container h2 {
-            color: #004D98;
-        }
     </style>
 </head>
 
 <body>
     <div class="navbar">
-        <h1>Soufiane Zougagh</h1>
+        <div class="navbar-left">
+            <h1>Soufiane ZOUGAGH</h1>
+        </div>
         <div class="navbar-right">
             <div class="dropdown">
                 <a href="#">Missions</a>
                 <div class="dropdown-content">
-                    <a href="#">Mission 1</a>
-                    <a href="#">Mission 2</a>
-                    <a href="#">Mission 3</a>
+                    <a href="Mission1/mission1.html">Mission 1</a>
+                    <a href="Mission2/index.html">Mission 2</a>
+                    <a href="Mission4/accueil.html">Mission 4</a>
+                    <a href="Mission5/moncv.html">Mission 5</a>
+                    <a href="Mission8/accueil.html">Mission 8</a>
+                    <a href="Mission9/accueil.html">Mission 9</a>
+                    <a href="Mission10/accueil.html">Mission 10</a>
                 </div>
             </div>
-            <a href="#">Travaux Pratiques</a>
-            <a href="#">Certifications</a>
+            <div class="dropdown">
+                <a href="#">Travaux Pratiques</a>
+                <div class="dropdown-content">
+                    <a href="TP1/presentation.html">TP 1</a>
+                    <a href="TP2/index.html">TP 2</a>
+                    <a href="TP3/programme.html">TP 3</a>
+                    <a href="TP4/centre.html">TP 4</a>
+                    <a href="TP5/calculatrice.html">TP 5</a>
+                    <a href="TP6/identification.html">TP 6</a>
+                    <a href="TP7/facture.html">TP 7</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#">Certifications</a>
+                <div class="dropdown-content">
+                    <a href="documents/certification1.png" target="_blank">Certification RGPD 1</a>
+                    <a href="documents/certification2.png" target="_blank">Certification RGPD 2</a>
+                    <a href="documents/certification3.png" target="_blank">Certification RGPD 3</a>
+                    <a href="documents/certification4.png" target="_blank">Certification RGPD 4</a>
+                    <a href="documents/certification5.png" target="_blank">Certification RPGD 5</a>
+                    <a href="documents/certification6.png" target="_blank">Certification ANSSI</a>
+                </div>
+            </div>
+            <a href="https://soufiane69.wordpress.com/" target="_blank">Wordpress</a>
+            <a href="TP8/accueil.html">PHP & SQL</a>
             <a href="https://www.linkedin.com/in/soufiane-z-010bb92aa" target="_blank">LinkedIn</a>
             <a href="https://github.com/zsoufiane" target="_blank">GitHub</a>
         </div>
-    </div>
-
-    <div class="container">
-        <h2>Bienvenue sur mon portfolio</h2>
-        <p>Découvrez mes projets, mes réalisations et mes compétences.</p>
     </div>
 </body>
 
