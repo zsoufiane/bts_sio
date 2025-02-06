@@ -55,6 +55,22 @@
             color: white;
         }
 
+        .back-btn {
+            background-color: #007bff;
+            color: white;
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            opacity: 0.8;
+        }
+
         .btn:hover {
             opacity: 0.8;
         }
@@ -94,6 +110,8 @@
 </head>
 
 <body>
+
+    <a href="index.html" class="back-btn">Retour à l'accueil</a>
 
     <h1>Banque d'Exercices JavaScript</h1>
     <p id="question-count">Nombre de questions : <span id="total-questions"></span></p>
