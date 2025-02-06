@@ -4,133 +4,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon portfolio</title>
+    <title>Banque d'Exercices JavaScript</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
+        /* Styles globaux */
         body {
-            background-color: #f4f4f9;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            padding: 20px;
+            text-align: center;
         }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #f8f9fa;
-            padding: 10px 20px;
-            border-bottom: 2px solid #A50044;
+        #question-count {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4e54c8;
+            margin-bottom: 10px;
         }
 
-        .navbar h1 {
-            font-size: 1.5rem;
-            color: #A50044;
-        }
-
-        .navbar-right {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 10px;
-        }
-
-        .navbar a:hover {
-            text-decoration: underline;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
+        .exercise {
             background-color: #fff;
-            border: 1px solid #A50044;
+            padding: 15px;
+            margin: 15px auto;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .exercise h2 {
+            color: #4e54c8;
+        }
+
+        .btn {
+            margin: 10px;
+            padding: 10px 15px;
+            border: none;
             border-radius: 5px;
-            z-index: 1;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
         }
 
-        .dropdown-content a {
-            display: block;
-            padding: 8px 12px;
-            color: #333;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #A50044;
+        .solution-btn {
+            background-color: #4e54c8;
             color: white;
         }
 
-        .dropdown:hover .dropdown-content {
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .back-btn {
+            background-color: #007bff;
+            color: white;
             display: block;
+            width: 200px;
+            margin: 20px auto;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            opacity: 0.8;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #dc3545;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="navbar-left">
-            <h1>Soufiane ZOUGAGH</h1>
-        </div>
-        <div class="navbar-right">
-            <div class="dropdown">
-                <a href="#">Missions</a>
-                <div class="dropdown-content">
-                    <a href="Mission1/mission1.html">Mission 1</a>
-                    <a href="Mission2/index.html">Mission 2</a>
-                    <a href="Mission4/accueil.html">Mission 4</a>
-                    <a href="Mission5/moncv.html">Mission 5</a>
-                    <a href="Mission8/accueil.html">Mission 8</a>
-                    <a href="Mission9/accueil.html">Mission 9</a>
-                    <a href="Mission10/accueil.html">Mission 10</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <a href="#">Travaux Pratiques</a>
-                <div class="dropdown-content">
-                    <a href="TP1/presentation.html">TP 1</a>
-                    <a href="TP2/index.html">TP 2</a>
-                    <a href="TP3/programme.html">TP 3</a>
-                    <a href="TP4/centre.html">TP 4</a>
-                    <a href="TP5/calculatrice.html">TP 5</a>
-                    <a href="TP6/identification.html">TP 6</a>
-                    <a href="TP7/facture.html">TP 7</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <a href="#">Certifications</a>
-                <div class="dropdown-content">
-                    <a href="documents/certification1.png" target="_blank">Certification RGPD 1</a>
-                    <a href="documents/certification2.png" target="_blank">Certification RGPD 2</a>
-                    <a href="documents/certification3.png" target="_blank">Certification RGPD 3</a>
-                    <a href="documents/certification4.png" target="_blank">Certification RGPD 4</a>
-                    <a href="documents/certification5.png" target="_blank">Certification RPGD 5</a>
-                    <a href="documents/certification6.png" target="_blank">Certification ANSSI</a>
-                </div>
-            </div>
-            <a href="https://soufiane69.wordpress.com/" target="_blank">Wordpress</a>
-            <a href="TP8/accueil.html">PHP & SQL</a>
-            <a href="https://www.linkedin.com/in/soufiane-z-010bb92aa" target="_blank">LinkedIn</a>
-            <a href="https://github.com/zsoufiane" target="_blank">GitHub</a>
+
+    <a href="index.html" class="back-btn">Retour à l'accueil</a>
+
+    <h1>Banque d'Exercices JavaScript</h1>
+    <p id="question-count">Nombre de questions : <span id="total-questions"></span></p>
+
+    <div class="exercise">
+        <h2>1. Somme</h2>
+        <p>Écrire une fonction qui prend deux nombres en entrée et retourne leur somme.</p>
+        <button class="btn solution-btn" onclick="showSolution('somme')">Voir la solution</button>
+        <button class="btn submit-btn" onclick="submitAnswer('somme')">Soumettre une réponse</button>
+    </div>
+
+    <div class="exercise">
+        <h2>2. Afficher 1..10</h2>
+        <p>Écrire une fonction qui affiche les nombres de 1 à 10 dans la console.</p>
+        <button class="btn solution-btn" onclick="showSolution('afficher')">Voir la solution</button>
+        <button class="btn submit-btn" onclick="submitAnswer('afficher')">Soumettre une réponse</button>
+    </div>
+
+    <div class="exercise">
+        <h2>3. Maximum</h2>
+        <p>Écrire une fonction qui prend trois nombres et retourne le plus grand.</p>
+        <button class="btn solution-btn" onclick="showSolution('maximum')">Voir la solution</button>
+        <button class="btn submit-btn" onclick="submitAnswer('maximum')">Soumettre une réponse</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <pre id="modal-content"></pre>
+            <button class="close-btn" onclick="closeModal()">Fermer</button>
         </div>
     </div>
+
+    <script>
+        const solutions = {
+            somme: `function somme(a, b) { return a + b; }`,
+            afficher: `function afficher() { for (let i = 1; i <= 10; i++) { console.log(i); } }`,
+            maximum: `function maximum(a, b, c) { return Math.max(a, b, c); }`
+        };
+
+        function showSolution(exercise) {
+            document.getElementById('modal-title').innerText = "Solution";
+            document.getElementById('modal-content').innerText = solutions[exercise];
+            document.getElementById('modal').style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = "none";
+        }
+
+        function submitAnswer(exercise) {
+            let userAnswer = prompt("Écrivez votre code ici :");
+            if (!userAnswer) return;
+
+            if (userAnswer.replace(/\s+/g, '') === solutions[exercise].replace(/\s+/g, '')) {
+                alert("✅ Bonne réponse !");
+            } else {
+                alert("❌ Mauvaise réponse, essayez encore !");
+            }
+        }
+
+        // Met à jour automatiquement le nombre de questions
+        function updateQuestionCount() {
+            const totalQuestions = document.querySelectorAll('.exercise').length;
+            document.getElementById('total-questions').innerText = totalQuestions;
+        }
+
+        // Exécute la mise à jour du compteur au chargement de la page
+        updateQuestionCount();
+    </script>
+
 </body>
 
 </html>
