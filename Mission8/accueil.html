@@ -14,6 +14,13 @@
             text-align: center;
         }
 
+        #question-count {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4e54c8;
+            margin-bottom: 10px;
+        }
+
         .exercise {
             background-color: #fff;
             padding: 15px;
@@ -89,6 +96,7 @@
 <body>
 
     <h1>Banque d'Exercices JavaScript</h1>
+    <p id="question-count">Nombre de questions : <span id="total-questions"></span></p>
 
     <div class="exercise">
         <h2>1. Somme</h2>
@@ -104,6 +112,13 @@
         <button class="btn submit-btn" onclick="submitAnswer('afficher')">Soumettre une réponse</button>
     </div>
 
+    <div class="exercise">
+        <h2>3. Maximum</h2>
+        <p>Écrire une fonction qui prend trois nombres et retourne le plus grand.</p>
+        <button class="btn solution-btn" onclick="showSolution('maximum')">Voir la solution</button>
+        <button class="btn submit-btn" onclick="submitAnswer('maximum')">Soumettre une réponse</button>
+    </div>
+
     <!-- Modal -->
     <div class="modal" id="modal">
         <div class="modal-content">
@@ -116,7 +131,8 @@
     <script>
         const solutions = {
             somme: `function somme(a, b) { return a + b; }`,
-            afficher: `function afficher() { for (let i = 1; i <= 10; i++) { console.log(i); } }`
+            afficher: `function afficher() { for (let i = 1; i <= 10; i++) { console.log(i); } }`,
+            maximum: `function maximum(a, b, c) { return Math.max(a, b, c); }`
         };
 
         function showSolution(exercise) {
@@ -139,6 +155,15 @@
                 alert("❌ Mauvaise réponse, essayez encore !");
             }
         }
+
+        // Met à jour automatiquement le nombre de questions
+        function updateQuestionCount() {
+            const totalQuestions = document.querySelectorAll('.exercise').length;
+            document.getElementById('total-questions').innerText = totalQuestions;
+        }
+
+        // Exécute la mise à jour du compteur au chargement de la page
+        updateQuestionCount();
     </script>
 
 </body>
