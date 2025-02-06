@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banque d'Exercices JavaScript</title>
     <style>
-        /* Styles globaux */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f4f8;
@@ -55,6 +54,10 @@
             color: white;
         }
 
+        .btn:hover {
+            opacity: 0.8;
+        }
+
         .back-btn {
             background-color: #007bff;
             color: white;
@@ -71,11 +74,6 @@
             opacity: 0.8;
         }
 
-        .btn:hover {
-            opacity: 0.8;
-        }
-
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -110,9 +108,6 @@
 </head>
 
 <body>
-
-    <a href="index.html" class="back-btn">Retour à l'accueil</a>
-
     <h1>Banque d'Exercices JavaScript</h1>
     <p id="question-count">Nombre de questions : <span id="total-questions"></span></p>
 
@@ -137,7 +132,22 @@
         <button class="btn submit-btn" onclick="submitAnswer('maximum')">Soumettre une réponse</button>
     </div>
 
-    <!-- Modal -->
+    <div class="exercise">
+        <h2>4. Factorielle</h2>
+        <p>Écrire une fonction qui calcule la factorielle d'un nombre donné.</p>
+        <button class="btn solution-btn" onclick="showSolution('factorielle')">Voir la solution</button>
+        <button class="btn submit-btn" onclick="submitAnswer('factorielle')">Soumettre une réponse</button>
+    </div>
+
+    <div class="exercise">
+        <h2>5. Vérifier un nombre pair</h2>
+        <p>Écrire une fonction qui vérifie si un nombre donné est pair.</p>
+        <button class="btn solution-btn" onclick="showSolution('pair')">Voir la solution</button>
+        <button class="btn submit-btn" onclick="submitAnswer('pair')">Soumettre une réponse</button>
+    </div>
+
+    <a href="index.html" class="back-btn">Retour à l'accueil</a>
+
     <div class="modal" id="modal">
         <div class="modal-content">
             <h3 id="modal-title"></h3>
@@ -150,7 +160,9 @@
         const solutions = {
             somme: `function somme(a, b) { return a + b; }`,
             afficher: `function afficher() { for (let i = 1; i <= 10; i++) { console.log(i); } }`,
-            maximum: `function maximum(a, b, c) { return Math.max(a, b, c); }`
+            maximum: `function maximum(a, b, c) { return Math.max(a, b, c); }`,
+            factorielle: `function factorielle(n) { return n <= 1 ? 1 : n * factorielle(n - 1); }`,
+            pair: `function pair(n) { return n % 2 === 0; }`
         };
 
         function showSolution(exercise) {
@@ -174,16 +186,12 @@
             }
         }
 
-        // Met à jour automatiquement le nombre de questions
         function updateQuestionCount() {
-            const totalQuestions = document.querySelectorAll('.exercise').length;
-            document.getElementById('total-questions').innerText = totalQuestions;
+            document.getElementById('total-questions').innerText = document.querySelectorAll('.exercise').length;
         }
 
-        // Exécute la mise à jour du compteur au chargement de la page
         updateQuestionCount();
     </script>
-
 </body>
 
 </html>
